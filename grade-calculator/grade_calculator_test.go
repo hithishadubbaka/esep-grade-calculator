@@ -39,9 +39,9 @@ func TestGetGradeF(t *testing.T) {
 
 	gradeCalculator := NewGradeCalculator()
 
-	gradeCalculator.AddGrade("open source assignment", 100, Assignment)
-	gradeCalculator.AddGrade("exam 1", 95, Exam)
-	gradeCalculator.AddGrade("essay on ai ethics", 91, Essay)
+	gradeCalculator.AddGrade("open source assignment", 40, Assignment)
+	gradeCalculator.AddGrade("exam 1", 35, Exam)
+	gradeCalculator.AddGrade("essay on ai ethics", 20, Essay)
 
 	actual_value := gradeCalculator.GetFinalGrade()
 
@@ -49,3 +49,4 @@ func TestGetGradeF(t *testing.T) {
 		t.Errorf("Expected GetGrade to return '%s'; got '%s' instead", expected_value, actual_value)
 	}
 }
+
