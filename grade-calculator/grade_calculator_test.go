@@ -50,3 +50,66 @@ func TestGetGradeF(t *testing.T) {
 	}
 }
 
+
+
+func TestGetGradeD(t *testing.T) {
+	expected := "D"
+	gc := NewGradeCalculator()
+	gc.AddGrade("assignment", 65, Assignment)
+	gc.AddGrade("exam", 60, Exam)
+	gc.AddGrade("essay", 61, Essay)
+
+	if gc.GetFinalGrade() != expected {
+		t.Errorf("Expected %s, got %s", expected, gc.GetFinalGrade())
+	}
+}
+
+
+
+func TestBoundaryCtoD(t *testing.T) {
+	gc := NewGradeCalculator()
+	gc.AddGrade("assignment", 70, Assignment)
+	gc.AddGrade("exam", 70, Exam)
+	gc.AddGrade("essay", 70, Essay)
+
+	if gc.GetFinalGrade() != "C" {
+		t.Errorf("Expected C, got %s", gc.GetFinalGrade())
+	}
+}
+
+
+
+func TestBoundaryBtoA(t *testing.T) {
+	gc := NewGradeCalculator()
+	gc.AddGrade("assignment", 89, Assignment)
+	gc.AddGrade("exam", 89, Exam)
+	gc.AddGrade("essay", 89, Essay)
+
+	if gc.GetFinalGrade() != "B" {
+		t.Errorf("Expected B, got %s", gc.GetFinalGrade())
+	}
+}
+
+
+
+func TestEmptyGrades(t *testing.T) {
+	gc := NewGradeCalculator()
+	if gc.GetFinalGrade() != "F" {
+		t.Errorf("Expected F for no grades, got %s", gc.GetFinalGrade())
+	}
+}
+
+
+
+func TestGradeTypeString(t *testing.T) {
+	if Assignment.String() != "assignment" {
+		t.Errorf("Expected 'assignment', got %s", Assignment.String())
+	}
+	if Exam.String() != "exam" {
+		t.Errorf("Expected 'exam', got %s", Exam.String())
+	}
+	if Essay.String() != "essay" {
+		t.Errorf("Expected 'essay', got %s", Essay.String())
+	}
+}
+
